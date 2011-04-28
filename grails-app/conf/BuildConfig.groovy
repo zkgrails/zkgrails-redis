@@ -13,19 +13,27 @@ grails.project.dependency.resolution = {
         grailsPlugins()
         grailsHome()
         grailsCentral()
+		def localResolver = new org.apache.ivy.plugins.resolver.FileSystemResolver(name:"local", settings:ivySettings)
+		localResolver.addArtifactPattern("/home/chanwit/grails-plugins-repo/grails-[artifact]-[revision].[ext]")
+		localResolver.latestStrategy  = new org.apache.ivy.plugins.latest.LatestTimeStrategy()
+        // localResolver.changingPattern = ".*SNAPSHOT"
+        localResolver.setCheckmodified true
+		resolver localResolver
 
-        // uncomment the below to enable remote dependency resolution
-        // from public Maven repositories
-        //mavenLocal()
-        //mavenCentral()
-        //mavenRepo "http://snapshots.repository.codehaus.org"
-        //mavenRepo "http://repository.codehaus.org"
-        //mavenRepo "http://download.java.net/maven/2/"
-        //mavenRepo "http://repository.jboss.com/maven2/"
+        mavenRepo "http://maven.springframework.org/milestone"
+        mavenRepo "http://snapshots.repository.codehaus.org"        
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
-
-        // runtime 'mysql:mysql-connector-java:5.1.13'
+        
+        def excludes = {
+            excludes "slf4j-simple", "persistence-api", "commons-logging", "jcl-over-slf4j", "slf4j-api", "jta"
+            excludes "spring-core", "spring-beans", "spring-aop", "spring-tx", "spring-context", "spring-web"
+        }
+        compile( "org.springframework:spring-datastore-web:1.0.0.M2", excludes)
+        test("org.grails:grails-datastore-gorm-test:1.0.0.M2", excludes)
+    }
+    plugins {
+        runtime ':zk:1.0.2-CL'
     }
 }

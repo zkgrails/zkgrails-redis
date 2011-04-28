@@ -2,11 +2,11 @@ import org.zkoss.zkgrails.*
 
 class ZkDatastoreGrailsPlugin {
     // the plugin version
-    def version = "0.1"
+    def version = "1.1-M1"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.3.6 > *"
     // the other plugins this plugin depends on
-    def dependsOn = [zk:"1.0.2-CL"]
+    def dependsOn = [zk: version]
     def loadAfter = ['zk']
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
@@ -14,11 +14,11 @@ class ZkDatastoreGrailsPlugin {
     ]
 
     // TODO Fill in these fields
-    def author = "Your name"
+    def author = "Chanwit Kaewkasi"
     def authorEmail = ""
-    def title = "Plugin summary/headline"
+    def title = "Spring Datastore support for ZK and Grails"
     def description = '''\\
-Brief description of the plugin.
+Spring Datastore support for ZK and Grails
 '''
 
     // URL to the plugin's documentation
