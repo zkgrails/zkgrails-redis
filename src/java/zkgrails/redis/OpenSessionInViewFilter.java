@@ -1,4 +1,4 @@
-package zkgrails;
+package zkgrails.redis;
 
 import java.io.IOException;
 import javax.servlet.FilterChain;
@@ -21,7 +21,7 @@ import org.springframework.ui.ModelMap;
 
 public class OpenSessionInViewFilter extends OncePerRequestFilter {
 
-	public static final String DEFAILT_DATASTORE_BEAN_NAME = "springDatastore";
+	public static final String DEFAILT_DATASTORE_BEAN_NAME = "redisDatastore";
 
 	private String springDatastoreBeanName = DEFAILT_DATASTORE_BEAN_NAME;
 
@@ -129,7 +129,7 @@ public class OpenSessionInViewFilter extends OncePerRequestFilter {
 	 */
 	protected Datastore lookupDatastore() {
 		if (logger.isDebugEnabled()) {
-			logger.debug("Using Datastire '" + this.springDatastoreBeanName + "' for OpenSessionInViewFilter");
+			logger.debug("Using Datastore '" + this.springDatastoreBeanName + "' for OpenSessionInViewFilter");
 		}
 		WebApplicationContext wac = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
 		return wac.getBean(this.springDatastoreBeanName, Datastore.class);

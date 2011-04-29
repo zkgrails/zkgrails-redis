@@ -1,10 +1,10 @@
 import org.zkoss.zkgrails.*
 
-class ZkDatastoreGrailsPlugin {
+class ZkRedisGrailsPlugin {
     // the plugin version
     def version = "1.1-M1"
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "1.3.6 > *"
+    def grailsVersion = "1.3 > *"
     // the other plugins this plugin depends on
     def dependsOn = [zk: version]
     def loadAfter = ['zk']
@@ -16,15 +16,15 @@ class ZkDatastoreGrailsPlugin {
     // TODO Fill in these fields
     def author = "Chanwit Kaewkasi"
     def authorEmail = ""
-    def title = "Spring Datastore support for ZK and Grails"
+    def title = "Spring Redis Datastore support for ZK and Grails"
     def description = '''\\
 Spring Datastore support for ZK and Grails
 '''
 
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/zk-datastore"
+    def documentation = "http://grails.org/plugin/zk-redis"
 
-    static final String GOSIV_CLASS = "zkgrails.OpenSessionInViewFilter"
+    static final String GOSIV_CLASS = "zkgrails.redis.OpenSessionInViewFilter"
     def doWithWebDescriptor = { xml ->
         def supportExts = ZkConfigHelper.supportExtensions
 
